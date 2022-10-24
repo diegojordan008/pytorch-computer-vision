@@ -28,7 +28,7 @@ import numpy as np
 import pandas as pd
 from torch.utils.data import Dataset
 
-from . import utils
+from load_dataset import utils
 
 #Set seeds
 np.random.seed(0)
@@ -48,11 +48,12 @@ class TinyData(Dataset):
         
         #Define dataset
         overall_dataset_dir = os.path.join(os.path.join(os.getcwd(),'load_dataset'), 'tiny_data')
+        #print("overall_dataset_dir: ", overall_dataset_dir)
         self.selected_dataset_dir = os.path.join(overall_dataset_dir,setname)
         
         #E.g. self.all_filenames = ['006.png','007.png','008.png'] when setname=='val'
         self.all_filenames = os.listdir(self.selected_dataset_dir)
-        self.all_labels = pd.read_csv(os.path.join(overall_dataset_dir,'tiny_labels.csv'),header=0,index_col=0)
+        self.all_labels = pd.read_csv(os.path.join(overall_dataset_dir,'labels2.csv'),header=0,index_col=0)
         self.label_meanings = self.all_labels.columns.values.tolist()
     
     def __len__(self):
@@ -72,6 +73,11 @@ class TinyData(Dataset):
         image = utils.to_tensor_and_normalize(imagepil)
         
         #load label
+        #print("selected_filename: ", selected_filename)
+        #selected_filename = int(selected_filename.split("-")[1].split(".")[0])
+        #print("selected_filename: ", selected_filename)
+        #print("self.all_labels: ", self.all_labels)
+
         label = torch.Tensor(self.all_labels.loc[selected_filename,:].values)
         
         sample = {'data':image, #preprocessed image, for input into NN

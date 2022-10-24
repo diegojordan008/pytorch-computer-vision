@@ -28,16 +28,16 @@ from models import custom_models_base
 from load_dataset import custom_tiny
 
 if __name__=='__main__':
-    general_results_dir='C:\\Users\\Rachel\\Documents\\Temp\\pytorch-computer-vision\\results'
+    general_results_dir='C:/Users/pauli/Documents/GitHub/pytorch-computer-vision/results'
     
     tot0 = timeit.default_timer()
     run_experiment.DoExperiment(descriptor='TinyConvWithoutSequential_TinyData',
             general_results_dir=general_results_dir,
-            custom_net = custom_models_base.TinyConvWithoutSequential,
+            custom_net = custom_models_base.VGG16,
             custom_net_args = {},
             learning_rate = 1e-3, #default 1e-3
             weight_decay = 1e-7, #default 1e-7
-            num_epochs=3, patience = 3,
+            num_epochs=20        , patience = 4,
             batch_size = 1, debug=True,
             use_test_set = False, task = 'train_eval',
             old_params_dir = '',

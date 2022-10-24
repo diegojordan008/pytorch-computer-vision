@@ -39,10 +39,13 @@ class TinyConvWithoutSequential(nn.Module):
     This model doesn't use nn.Sequential."""
     def __init__(self):
         super(TinyConvWithoutSequential, self).__init__()
-        self.conv1 = nn.Conv2d(3, 8, kernel_size = (3,3), stride=(3,3), padding=0)
+        self.conv1 = nn.Conv2d(in_channels = 3, out_channels=8, kernel_size = (3,3), stride=(3,3), padding=0)
         self.relu = nn.ReLU(inplace=True)
         self.conv2 = nn.Conv2d(8, 16, kernel_size = (3,3), stride=(3,3), padding=0)
-        self.fc = nn.Linear(in_features=16*3*3,out_features=3)
+        # Outfeatures has to be the number of emotions????
+        #self.fc = nn.Linear(in_features=16*3*3,out_features=5)
+        # I think is the size of the image?? 16*28*28
+        self.fc = nn.Linear(in_features=12544,out_features=5)
     
     def forward(self, x):
         x = self.conv1(x)
@@ -86,7 +89,8 @@ class VGG16(nn.Module):
                 
                             nn.Conv2d(256, 64, kernel_size = (1,1), stride=(1,1), padding=0),
                             nn.ReLU(inplace=True))
-        self.fc = nn.Linear(in_features=64*10*10,out_features=20)
+                            # sizesssssssss 4096
+        self.fc = nn.Linear(in_features=4096,out_features=5)
     
     def forward(self, x):
         #for PASCAL VOC, x shape [batch_size, 3, 320, 320]

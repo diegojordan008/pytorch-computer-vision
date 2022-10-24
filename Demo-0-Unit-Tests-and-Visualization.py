@@ -21,7 +21,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE
 
-import torchvision #only needed if you're downloading data for the first time
 
 from src import unit_tests
 from load_dataset import custom_pascal
@@ -33,7 +32,8 @@ if __name__ == '__main__':
     #Run visualization sanity checks
     #Change voc_dataset_dir to a directory in which you want to store the
     #PASCAL VOC 2012 data:
-    voc_dataset_dir = 'C:\\Users\\Rachel\\Documents\\Data\\VOC2012'
+    voc_dataset_dir = 'C:/Users/pauli/Documents/GitHub/pytorch-computer-vision/load_dataset'
+    
     #Uncomment the following line if you need to download the VOC 2012 dataset:
     #dataset = torchvision.datasets.VOCSegmentation(voc_dataset_dir, year='2012', image_set='val', download=True)
     

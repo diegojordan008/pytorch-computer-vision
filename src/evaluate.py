@@ -54,6 +54,12 @@ def initialize_evaluation_dfs(all_labels, num_epochs):
     result_df = pd.DataFrame(data=np.zeros((numrows, num_epochs)),
                             index = index,
                             columns = ['epoch_'+str(n) for n in range(0,num_epochs)])
+
+    ##############################
+    # BAD PRACTICE PRINTING
+    # #########################                    
+    print("result_df: ", result_df)
+
     #Initialize empty pandas dataframe to store evaluation results for top k
     top_k_result_df = pd.DataFrame(np.zeros((len(all_labels), num_epochs)),
                                    index=[x for x in range(1,len(all_labels)+1)], #e.g. 1,...,64 for len(all_labels)=64
