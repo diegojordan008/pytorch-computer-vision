@@ -26,12 +26,13 @@ import torchvision #only needed if you're downloading data for the first time
 
 from src import run_experiment
 from models import custom_models_base
-from load_dataset import custom_pascal
+from load_dataset import custom_tiny
 
 if __name__=='__main__':
-    general_results_dir = 'C:\\Users\\Rachel\\Documents\\Temp\\pytorch-computer-vision\\results'
-    voc_dataset_dir = 'C:\\Users\\Rachel\\Documents\\Data\\VOC2012'
-    sbd_dataset_dir = 'C:\\Users\\Rachel\\Documents\\Data\\SBD'
+    general_results_dir='C:/Users/pauli/Documents/GitHub/pytorch-computer-vision/results'
+    # general_results_dir = 'C:\\Users\\Rachel\\Documents\\Temp\\pytorch-computer-vision\\results'
+    #voc_dataset_dir = 'C:\\Users\\Rachel\\Documents\\Data\\VOC2012'
+    #sbd_dataset_dir = 'C:\\Users\\Rachel\\Documents\\Data\\SBD'
     
     #Uncomment the following lines if you need to download the datasets:
     #voc_train = torchvision.datasets.VOCSegmentation(voc_dataset_dir, year='2012',image_set='train',download=True)
@@ -50,8 +51,9 @@ if __name__=='__main__':
             batch_size = 64, debug=False,
             use_test_set = False, task = 'train_eval',
             old_params_dir = '',
-            chosen_dataset = custom_pascal.PascalVOC2012,
-            chosen_dataset_args = {'voc_dataset_dir':voc_dataset_dir,
-                                   'sbd_dataset_dir':sbd_dataset_dir})
+            chosen_dataset = custom_pascal.TinyData,
+            chosen_dataset_args = {})
+            #chosen_dataset_args = {'voc_dataset_dir':voc_dataset_dir,
+             #                      'sbd_dataset_dir':sbd_dataset_dir})
     tot1 = timeit.default_timer()
     print('Total Time', round((tot1 - tot0)/60.0,2),'minutes')

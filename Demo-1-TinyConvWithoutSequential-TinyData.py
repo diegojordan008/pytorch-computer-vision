@@ -31,14 +31,14 @@ if __name__=='__main__':
     general_results_dir='C:/Users/pauli/Documents/GitHub/pytorch-computer-vision/results'
     
     tot0 = timeit.default_timer()
-    run_experiment.DoExperiment(descriptor='TinyConvWithoutSequential_TinyData',
+    run_experiment.DoExperiment(descriptor='VGG',
             general_results_dir=general_results_dir,
             custom_net = custom_models_base.VGG16,
             custom_net_args = {},
             learning_rate = 1e-3, #default 1e-3
             weight_decay = 1e-7, #default 1e-7
             num_epochs=20        , patience = 4,
-            batch_size = 1, debug=True,
+            batch_size = 24, debug=True,
             use_test_set = False, task = 'train_eval',
             old_params_dir = '',
             chosen_dataset = custom_tiny.TinyData,
